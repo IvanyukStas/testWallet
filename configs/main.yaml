@@ -1,8 +1,8 @@
+env: "local" # local, dev, production
 server:
   host: 127.0.0.1
   port: 8080
   timeout:
-    server: 30
-    read: 15
-    write: 10
-    idle: 5
+    server: 30s
+    
+    idle: 5s
