@@ -12,6 +12,7 @@ type Config struct{
 	Env string	`yaml:"env" env-default:"dev"`
 				
 	HTTPServer	`yaml:"server"`
+	Database
 }
 
 type HTTPServer struct{
@@ -24,6 +25,8 @@ type Timeout struct{
 	Server time.Duration`yaml: "server" env-default:"3s"`
 	Idle time.Duration	`yaml:"idle" env-default: "60s"`
 }
+
+
 
 func MustLoad() *Config{
 	const cfgPath = "configs/main.yaml"

@@ -6,3 +6,7 @@ server:
     server: 30s
     
     idle: 5s
+database:
+  user: postgres
+  password: changeme
+  dbname: postgres
