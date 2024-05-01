@@ -1,9 +1,11 @@
 /*
 Package models is
-
 */
 package models
 
+import "errors"
+
+var ErrorUserExists = errors.New("User alreagy exists in database")
 
 //User is 
 type User struct{
@@ -23,7 +25,7 @@ type Wallet struct{
 //Cruder is CRUD interface
 type Cruder interface{
 	Create(User) error
-	Urdate(string, User) error
+	Update(string, User) error
 	Delete(string) error
 	GetById(string) error
 }

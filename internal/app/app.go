@@ -9,9 +9,11 @@ import (
 	"net/http"
 	"testWallet/internal/config"
 	"testWallet/internal/logger"
-	mwLogger "testWallet/internal/transport/rest/middleware/logger"
+	"testWallet/internal/services"
+	// mwLogger "testWallet/internal/transport/rest/middleware/logger"
+	hh "testWallet/internal/transport/rest/handler"
 
-	"github.com/justinas/alice"
+	// "github.com/justinas/alice"
 )
 
 // Run app
@@ -23,11 +25,20 @@ func Run() {
 	log.Info("initializing server", slog.String("adress", cfg.Host))
 	log.Debug("start the program")
 
-	middlewareChain := alice.New(mwLogger.New(log))
+	// middlewareChain := alice.New(mwLogger.New(log))
+	repo, _ := services.NewPostgresRepository()
 
+	h := &hh.WalletHandler{
+		Repo: repo,
+		Logger: log,
+	}
+
+	
 	mux := http.NewServeMux()
-	finalHandler := http.HandlerFunc(final)
-	mux.Handle("/", middlewareChain.Then(finalHandler))
+	// finalHandler := http.HandlerFunc(final)
+	// mux.Handle("/", middlewareChain.Then(finalHandler))
+
+	mux.HandleFunc("/", h.Post)
 
 	err := http.ListenAndServe(":8080", mux)
 	fmt.Println(err)

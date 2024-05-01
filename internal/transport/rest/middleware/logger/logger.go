@@ -17,7 +17,7 @@ func New(log *slog.Logger) func(next http.Handler) http.Handler {
 				slog.String("path", r.URL.Path),
 				slog.String("remore_add", r.RemoteAddr),
 				slog.String("user_agent", r.UserAgent()),
-				slog.String("request_id", r.PathValue("id")),
+				slog.String("request_id", r.Context()),
 			)
 			t1 := time.Now()
 			defer func() {
