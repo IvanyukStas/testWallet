@@ -26,6 +26,12 @@ type Timeout struct{
 	Idle time.Duration	`yaml:"idle" env-default: "60s"`
 }
 
+//Database is connection config
+type Database struct{
+	User string
+	Password string
+	DbName string
+}
 
 
 func MustLoad() *Config{

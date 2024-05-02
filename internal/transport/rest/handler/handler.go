@@ -23,7 +23,7 @@ func (wh *WalletHandler) Post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err = wh.Repo.Create(user); err != nil {
+	if err = wh.Repo.Create(user.Name); err != nil {
 		wh.Logger.Info(err.Error(), slog.String("url", r.URL.String()))
 		if err == models.ErrorUserExists {
 			http.Error(w, err.Error(), http.StatusBadRequest)

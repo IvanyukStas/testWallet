@@ -8,11 +8,13 @@ import (
 	"log/slog"
 	"net/http"
 	"testWallet/internal/config"
+	"testWallet/internal/database/postgres"
 	"testWallet/internal/logger"
-	"testWallet/internal/services"
+	"testWallet/internal/models"
+
+	// "testWallet/internal/services"
 	// mwLogger "testWallet/internal/transport/rest/middleware/logger"
 	hh "testWallet/internal/transport/rest/handler"
-
 	// "github.com/justinas/alice"
 )
 
@@ -26,7 +28,17 @@ func Run() {
 	log.Debug("start the program")
 
 	// middlewareChain := alice.New(mwLogger.New(log))
-	repo, _ := services.NewPostgresRepository()
+	repo:= postgres.NewPGConnection(cfg)
+	defer repo.CloseDB()
+	
+	u := models.User{
+		Name: "Stas3",
+	}
+	// a := repo.Create(u.Name) 
+	// fmt.Printf("%+v", a)
+	if err := repo.Delete(u.Name); err!= nil{
+		fmt.Println(err)
+	}
 
 	h := &hh.WalletHandler{
 		Repo: repo,

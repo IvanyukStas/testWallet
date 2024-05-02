@@ -10,22 +10,23 @@ var ErrorUserExists = errors.New("User alreagy exists in database")
 //User is 
 type User struct{
 	ID 		string `json:"id,omitempty"`
-	Name	string `json:"name" validate:"required"`	
+	Name	string `json:"name" validate:"required"`
+	Time	string		
 	Wallet		   `json:"wallet,omitempty"`
 }
 
 
 //Wallet is wallet of user
 type Wallet struct{
-	ID string	   `json:"id,omitempty"`
+	IDWallet string	   `json:"id,omitempty"`
 	Balance string `json:"balance,omitempty"`
 }
 
 
 //Cruder is CRUD interface
 type Cruder interface{
-	Create(User) error
+	Create(string) error
 	Update(string, User) error
 	Delete(string) error
-	GetById(string) error
+	GetByName(*User) (*User, error)
 }
