@@ -1,17 +1,6 @@
 // package services
 
-// import (
-// 	"fmt"
+
+func ChangeUserBalance(UserId string) error{
 	
-// )
-
-
-// type PostgresRepository struct{
-// 	Users []models.User
-// }
-
-// func NewPostgresRepository() (models.Cruder, error){
-
-// 	return &PostgresRepository{}, nil
-// }
-
+}

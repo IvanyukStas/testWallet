@@ -10,7 +10,7 @@ import (
 	"testWallet/internal/config"
 	"testWallet/internal/database/postgres"
 	"testWallet/internal/logger"
-	"testWallet/internal/models"
+	// "testWallet/internal/models"
 
 	// "testWallet/internal/services"
 	// mwLogger "testWallet/internal/transport/rest/middleware/logger"
@@ -31,9 +31,12 @@ func Run() {
 	repo:= postgres.NewPGConnection(cfg)
 	defer repo.CloseDB()
 	
-	u := models.User{
-		Name: "Stas5",
-	}
+	// u := models.User{
+	// 	Name: "Stas5",
+	// }
+	repo.Update("1", "13")
+	repo.Update("2", "13") 
+	// fmt.Printf("%+v", a)
 	// a := repo.Create(u.Name) 
 	// fmt.Printf("%+v", a)
 	// if err := repo.Delete(u.Name); err!= nil{

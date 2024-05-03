@@ -58,11 +58,20 @@ func (p *PostgresRepository)Delete(name string) error{
 	return nil
 }
 
-func (p *PostgresRepository)Update(id string, u models.User) error{
-	_, err := p.db.Query("UPDATE balance form wallets where user_id=$1", id)
+func (p *PostgresRepository)Update(id, balance string, ) error{
+	var res sql.Result
+	res, err := p.db.Exec("UPDATE wallets set balance=$2 where user_id=$1", id, balance)
 	if err != nil{
-		return err
+		return  err
 	}
+	r, err := res.RowsAffected()
+	if r < 1{
+		fmt.Println("NO ROW APDATED")
+	}else{
+		fmt.Println("UPDATED ", r, "ROW(s)")
+	}
+	
+	
 	return nil
 }
 

@@ -26,7 +26,7 @@ type Wallet struct{
 //Cruder is CRUD interface
 type Cruder interface{
 	Create(string) error
-	Update(string, User) error
+	Update(string, string)  error
 	Delete(string) error
 	GetByName(*User) (*User, error)
 }
