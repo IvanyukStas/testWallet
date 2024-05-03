@@ -32,13 +32,13 @@ func Run() {
 	defer repo.CloseDB()
 	
 	u := models.User{
-		Name: "Stas3",
+		Name: "Stas5",
 	}
 	// a := repo.Create(u.Name) 
 	// fmt.Printf("%+v", a)
-	if err := repo.Delete(u.Name); err!= nil{
-		fmt.Println(err)
-	}
+	// if err := repo.Delete(u.Name); err!= nil{
+	// 	fmt.Println(err)
+	// }
 
 	h := &hh.WalletHandler{
 		Repo: repo,

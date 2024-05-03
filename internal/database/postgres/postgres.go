@@ -59,7 +59,10 @@ func (p *PostgresRepository)Delete(name string) error{
 }
 
 func (p *PostgresRepository)Update(id string, u models.User) error{
-	fmt.Println("Create user!")
+	_, err := p.db.Query("UPDATE balance form wallets where user_id=$1", id)
+	if err != nil{
+		return err
+	}
 	return nil
 }
 
